@@ -1,0 +1,23 @@
+---
+import { getToolSection } from './api';
+
+const toolContent = await getToolSection();
+---
+
+<section
+  class="bg-secondary-100 dark:bg-secondary-900 flex flex-col items-center gap-4 rounded-2xl p-6 text-center md:w-1/2 md:items-start md:text-start lg:w-full"
+  aria-labelledby="tech-aside-heading"
+>
+  <h2 class="font-geist font-bold" id="tech-aside-heading">{toolContent.title}</h2>
+  <p class="text-sm">{toolContent.description}</p>
+
+  <ul class="flex flex-wrap justify-center gap-4" aria-labelledby="tech-aside-heading">
+    {
+      toolContent.toolCollection.map(tool => (
+        <li class="flex h-14 w-14 items-center justify-center rounded-lg bg-white dark:bg-neutral-200">
+          <img src={tool.logo.url} alt={tool.name} title={tool.name} class="h-8 w-8 object-contain" />
+        </li>
+      ))
+    }
+  </ul>
+</section>

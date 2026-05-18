@@ -1,0 +1,28 @@
+---
+import Layout from '#layouts/layout.astro';
+import PostCollection from '#pods/post-collection/post-collection.pod.astro';
+import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
+import FeaturedPostsPod from '#pods/featured-posts/featured-posts.pod.astro';
+import { getAllPosts } from '#pods/post-collection/api';
+import HomeHeroPod from '#pods/home-hero/home-hero.pod.astro';
+import MonthlyRecommendationPod from '#pods/monthly-recommendation/monthly-recommendation.pod.astro';
+import { getMetadata } from '#core/api';
+
+const allPosts = await getAllPosts();
+const metadata = await getMetadata();
+---
+
+<Layout
+  title={metadata.homeTitle}
+  reverseAside={true}
+  description={metadata.homeDescription}
+  favicon={metadata.favicon.url}
+>
+  <HomeHeroPod slot="hero" />
+  {allPosts.length > 0 ? <PostCollection posts={allPosts} /> : <p>Coming Soon</p>}
+  <Fragment slot="aside">
+    <MiniBioPod type="card" />
+    <MonthlyRecommendationPod />
+    <FeaturedPostsPod />
+  </Fragment>
+</Layout>

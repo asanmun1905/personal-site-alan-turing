@@ -1,0 +1,19 @@
+---
+import Header from './components/header.astro';
+import Content from './components/content.astro';
+import type { Post } from '#pods/post-collection/api';
+import { getBlogSubheader } from './api';
+
+interface Props {
+  postEntry: Post;
+}
+
+const { postEntry } = Astro.props;
+
+const blogSubheader = await getBlogSubheader();
+---
+
+<section class="flex shrink-1 grow flex-col gap-12 px-6 py-4">
+  <Header gobackText={blogSubheader.backLabel} publishedText={blogSubheader.publishedLabel} date={postEntry.date} />
+  <Content entry={postEntry} />
+</section>

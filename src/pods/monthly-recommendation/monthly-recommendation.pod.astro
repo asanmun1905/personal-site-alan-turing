@@ -1,0 +1,25 @@
+---
+import { getRecommendationSection } from './api';
+
+const content = await getRecommendationSection();
+---
+
+<section
+  class="bg-secondary-100 dark:bg-secondary-900 relative flex flex-col gap-4 rounded-2xl p-6 md:w-1/2 lg:w-full"
+  aria-labelledby="newsletter-aside-heading"
+>
+  <h2 class="font-geist text-tbase-500/80 font-bold" id="newsletter-aside-heading">{content.title}</h2>
+  <div class="flex flex-1 flex-col justify-between gap-2">
+    <p class="text-sm">{content.oneRecommendation.description}</p>
+    <p class="text-sm">
+      {content.oneRecommendation.linkText}
+      <a
+        href={content.oneRecommendation.linkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-tbase-500/80 hover:text-secondary-500 dark:hover:text-secondary-200 underline decoration-[1.4px] underline-offset-2 transition-all"
+        >{content.oneRecommendation.linkLabel}</a
+      >
+    </p>
+  </div>
+</section>
