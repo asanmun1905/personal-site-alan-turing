@@ -12,7 +12,7 @@
     "#*": "./src/*"
   },
   "dependencies": {
-    "@content-island/api-client": "^0.18.0",
+    "@content-island/api-client": "^0.22.0",
     "astro": "^6.3.1",
     "highlight.js": "^11.11.1",
     "marked": "^18.0.3"
